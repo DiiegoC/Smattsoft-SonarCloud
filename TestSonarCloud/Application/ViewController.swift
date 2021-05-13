@@ -15,6 +15,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configuracionInicial()
+        print
+        var =
+        if a < 10 {
+            if b > 6 {
+                if c == 5 {
+                    if x < 12 - 2 {
+                        print("")
+                    }
+                }
+            }
+        }
     }
 
     /// # Funciones
