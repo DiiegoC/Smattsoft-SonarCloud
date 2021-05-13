@@ -1,0 +1,27 @@
+included:
+  - ../TestSonarCloud
+  - ../TestSonarCloudTests
+    - ../TestSonarCloudUITests
+
+disabled_rules:
+  - line_length
+  - trailing_whitespace
+
+opt_in_rules:
+
+# useful for frameworks with public interface  - missing_docs
+  - multiline_parameters
+  - nslocalizedstring_key
+  - operator_usage_whitespace
+  - unneeded_parentheses_in_closure_argument
+  - unused_declaration
+  - unused_import
+  - vertical_parameter_alignment_on_call
+  - vertical_whitespace_closing_braces
+  
+# if {
+# }
+# else {
+# }
+statement_position:
+  statement_mode: uncuddled_else
