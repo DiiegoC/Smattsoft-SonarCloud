@@ -2,8 +2,6 @@
 //  ReglasSwift.swift
 //
 //  Created by Diego Cruz on 07/05/21.
-//
-
 // MARK: REGLAS PARA CODIFICACIÓN IOS
 
 ////  Parameter - SINTAXIS
@@ -309,6 +307,7 @@ enum tipoUsuario {
     var nombreUno = ""
     func llenarDatos() {
         var nombreUno = 10
+        print(some)
     }
     // Correcto
     var nombreUno = ""
