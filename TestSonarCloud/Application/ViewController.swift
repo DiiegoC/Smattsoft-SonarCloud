@@ -22,6 +22,17 @@ class ViewController: UIViewController {
         configureNavigationDefault()
         tableMascotas.dataSource = self
         tableMascotas.delegate = self
+        print("")
+        let x = 10
+        if x > 0 {
+            if x > 8 {
+                if x > 9 {
+                    if x == 12 {
+                        print("igual")
+                    }
+                }
+            }
+        }
     }
     
     func moveTable() {
@@ -56,6 +67,7 @@ class ViewController: UIViewController {
         self.present(alert, animated: true)
     }
 }
+
 //MARK: OTHER SOURCES
 /// # Extensión: Tabla
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
