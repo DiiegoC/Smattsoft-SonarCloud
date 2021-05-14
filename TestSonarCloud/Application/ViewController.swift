@@ -38,12 +38,12 @@ class ViewController: UIViewController {
         print(msj)
 //        let urlWhats = "whatsapp://send?text=\(msj)"
         let urlWhats = "https://" + "wa.me/5212311398424"
-        let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        if urlString != nil {
-            if let whatsappURL = NSURL(string: urlString!), UIApplication.shared.canOpenURL(whatsappURL as URL) {
-//                 UIApplication.shared.canOpenURL(whatsappURL as URL) {
-                    UIApplication.shared.open(whatsappURL as URL)
-//                }
+        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            guard let whatsappURL = NSURL(string: urlString) else { return }
+            if UIApplication.shared.canOpenURL(whatsappURL as URL) {
+                UIApplication.shared.open(whatsappURL as URL)
+            } else {
+                print("Install whatsapp please")
             }
         }
     }
