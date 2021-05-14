@@ -11,51 +11,74 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableMascotas: UITableView!
     var listaMascotas = [Mascotas]()
     var imagenesAnimales = [aguila, gato, perro, hamster, tortuga]
-    
+    /// # LYFECICLE APP
     override func viewDidLoad() {
         super.viewDidLoad()
         configuracionInicial()
     }
-
     /// # Funciones
     func configuracionInicial() {
         configureNavigationDefault()
         tableMascotas.dataSource = self
         tableMascotas.delegate = self
-        print("")
-        let x = 10
-        if x > 0 {
-            if x > 8 {
-                if x > 9 {
-                    if x == 12 {
-                        print("igual")
-                    }
-                }
-            }
-        }
     }
-    
     func moveTable() {
         if listaMascotas.count > 8 {
             let indexPath = IndexPath(row: listaMascotas.count - 1, section: 0)
             tableMascotas.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
-    
+    /// # Aquí podemos mandar un mensaje personalizado en whatsapp
+    func llamarWSP(mensaje: String) {
+        //// # Mandar mensaje a un número de whatsapp
+        /// https:// wa.me/ 5212311398424
+        //// # Mandar mensaje a un número de whatsapp con un mensaje
+        /// https:// api.whatsapp.com/ send/?phone=5212311398424&text=I%27m+interested+in+your+car+for+sale&app_absent=0
+        let msj = mensaje
+        print(msj)
+//        let urlWhats = "whatsapp://send?text=\(msj)"
+        let urlWhats = "https://wa.me/5212311398424"
+        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let whatsappURL = NSURL(string: urlString) {
+                if UIApplication.shared.canOpenURL(whatsappURL as URL) {
+                    UIApplication.shared.open(whatsappURL as URL)
+                }
+            }
+        }
+    }
+    func abrirwspIFT() {
+        let numberWSP = "5212311398424"
+        let message = "Hola requiero informacion"
+        let urlWhats = "whatsapp://send?phone=\(numberWSP)&text=\(message)"
+        var characterSet = CharacterSet.urlQueryAllowed
+        characterSet.insert(charactersIn: "?&")
+        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: characterSet) {
+            if let whatsappURL = NSURL(string: urlString) {
+                if UIApplication.shared.canOpenURL(whatsappURL as URL) {
+                    UIApplication.shared.open(whatsappURL as URL)
+                } else {
+                    print("Install Whatsapp")
+                }
+            }
+        }
+    }
     func displayMyAlertMessage(_ title: String, userMessage: String) {
-        let myAlert = UIAlertController(title: title, message: userMessage, preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: TextosApp.btnAccep.rawValue, style: UIAlertAction.Style.default, handler: nil)
+        let myAlert = UIAlertController(
+            title: title, message: userMessage, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(
+            title: TextosApp.btnAccep.rawValue, style: UIAlertAction.Style.default, handler: nil)
         myAlert.addAction(okAction)
         present(myAlert, animated: true, completion: nil)
     }
-    
+    /// #Add pet to list
     @IBAction func agregarMascotaNueva(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: TextosApp.addTitle.rawValue, message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: TextosApp.btnCance.rawValue, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: TextosApp.btnCance.rawValue,
+                                      style: .cancel, handler: nil))
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = TextosApp.placeholder.rawValue
         })
-        alert.addAction(UIAlertAction(title: TextosApp.btnAccep.rawValue, style: .default, handler: { [self] action in
+        alert.addAction(UIAlertAction(title: TextosApp.btnAccep.rawValue, style: .default, handler: { [self] _ in
             if !alert.textFields!.first!.text!.isEmpty, let name = alert.textFields?.first?.text {
                 listaMascotas.append(Mascotas(nombre: name, imagen: imagenesAnimales.randomElement()!))
                 tableMascotas.reloadData()
@@ -66,15 +89,29 @@ class ViewController: UIViewController {
         }))
         self.present(alert, animated: true)
     }
+    /// #Send message action
+    @IBAction func sendWSP(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: TextosApp.titleAlert.rawValue,
+                                      message: TextosApp.msjAlert.rawValue,
+                                      preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "WhatsApp 1", style: .default, handler: { [self] _ in
+                                        llamarWSP(mensaje: "Hola")
+                                      }))
+        alert.addAction(UIAlertAction(title: "WhatsApp 2", style: .default, handler: { [self] _ in
+                                        abrirwspIFT()
+                                      }))
+        alert.addAction(UIAlertAction(title: TextosApp.btnCance.rawValue,
+                                      style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
 }
 
-//MARK: OTHER SOURCES
+// MARK: OTHER SOURCES
 /// # Extensión: Tabla
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listaMascotas.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = listaMascotas[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: TextosApp.cellID.rawValue)
@@ -87,7 +124,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell?.accessoryType = .disclosureIndicator
         return cell!
     }
-        
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = listaMascotas[indexPath.row]
         let message = "\(item.nombre) es un \(item.imagen)"

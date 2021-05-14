@@ -16,6 +16,8 @@ var tortuga = "tortuga"
 /// # Enumeracion: Textos de la App
 enum TextosApp: String {
     case addTitle = "Agregar mascota"
+    case titleAlert = "Compartir en WhatsApp"
+    case msjAlert = "Selecciona una opción"
     case placeholder = "Agregue el nombre de su mascota"
     case btnTitle = "Agregar"
     case btnAccep = "Aceptar"

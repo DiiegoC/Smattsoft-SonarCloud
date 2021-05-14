@@ -43,11 +43,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6Ci-Nb-uMV">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="RDU-n9-MtL">
-                            <connections>
-                                <action selector="agregarMascotaNueva:" destination="BYZ-38-t0r" id="gIR-f2-YGd"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="message" id="ioL-WQ-udk">
+                                <connections>
+                                    <action selector="sendWSP:" destination="BYZ-38-t0r" id="Bmm-dB-kEE"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="RDU-n9-MtL">
+                                <connections>
+                                    <action selector="agregarMascotaNueva:" destination="BYZ-38-t0r" id="gIR-f2-YGd"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -78,6 +85,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="message" width="20" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
