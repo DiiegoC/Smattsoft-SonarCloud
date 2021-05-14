@@ -37,13 +37,14 @@ class ViewController: UIViewController {
         let msj = mensaje
         print(msj)
 //        let urlWhats = "whatsapp://send?text=\(msj)"
-        let urlWhats = "https://wa.me/5212311398424"
-        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-            if let whatsappURL = NSURL(string: urlString) {
+        let urlWhats = "https://" + "wa.me/5212311398424"
+        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+           let whatsappURL = NSURL(string: urlString) {
+//            if let whatsappURL = NSURL(string: urlString) {
                 if UIApplication.shared.canOpenURL(whatsappURL as URL) {
                     UIApplication.shared.open(whatsappURL as URL)
                 }
-            }
+//            }
         }
     }
     func abrirwspIFT() {
