@@ -43,23 +43,22 @@ class ViewController: UIViewController {
             if UIApplication.shared.canOpenURL(whatsappURL as URL) {
                 UIApplication.shared.open(whatsappURL as URL)
             } else {
-                print("Install whatsapp please")
+                print("Instala WhatsApp para poder continuar")
             }
         }
     }
     func abrirwspIFT() {
         let numberWSP = "5212311398424"
         let message = "Hola requiero informacion"
-        let urlWhats = "whatsapp://send?phone=\(numberWSP)&text=\(message)"
+        let urlWhats = "whatsapp://" + "send?phone=\(numberWSP)&text=\(message)"
         var characterSet = CharacterSet.urlQueryAllowed
         characterSet.insert(charactersIn: "?&")
         if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: characterSet) {
-            if let whatsappURL = NSURL(string: urlString) {
-                if UIApplication.shared.canOpenURL(whatsappURL as URL) {
-                    UIApplication.shared.open(whatsappURL as URL)
-                } else {
-                    print("Install Whatsapp")
-                }
+            guard let whatsappURL = NSURL(string: urlString) else { return }
+            if UIApplication.shared.canOpenURL(whatsappURL as URL) {
+                UIApplication.shared.open(whatsappURL as URL)
+            } else {
+                print("WhatsApp no está instalado")
             }
         }
     }
