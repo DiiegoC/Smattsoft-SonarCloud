@@ -22,12 +22,14 @@ class ViewController: UIViewController {
         tableMascotas.dataSource = self
         tableMascotas.delegate = self
     }
+    
     func moveTable() {
         if listaMascotas.count > 8 {
             let indexPath = IndexPath(row: listaMascotas.count - 1, section: 0)
             tableMascotas.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
+    
     /// # Aquí podemos mandar un mensaje personalizado en whatsapp
     func llamarWSP(mensaje: String) {
         //// # Mandar mensaje a un número de whatsapp

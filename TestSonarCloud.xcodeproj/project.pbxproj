@@ -186,7 +186,6 @@
 				F1B32174263B65330003152D /* Sources */,
 				F1B32175263B65330003152D /* Frameworks */,
 				F1B32176263B65330003152D /* Resources */,
-				F1216DA5264C25AB004BF0A2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -287,24 +286,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F1216DA5264C25AB004BF0A2 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "```bash\n\nif which swiftlint >/dev/null; then\n\n swiftlint\n\nelse\n\n echo \"Advertencia: SwiftLint no está instalado, descárguelo de https://github.com/realm/SwiftLint\"\n\nfi\n\n```\n";
-		};
 		F1216DAC264C2624004BF0A2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
